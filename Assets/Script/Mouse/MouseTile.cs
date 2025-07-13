@@ -11,7 +11,7 @@ namespace Lrw_Mouse
     public class MouseTile : MonoBehaviour
     {
         [field:SerializeField] public LrwTileData tileData { get; private set; }
-
+        [field: SerializeField] public bool setTile { get; private set; } = true;
         private Dictionary<int, ClickData> tileSetDictionary = new();
         private int tileSetDictionaryCount = 0;
 
@@ -30,12 +30,21 @@ namespace Lrw_Mouse
         {
             if (Mouse.current.leftButton.isPressed)
             {
-                if (!tileSetDictionary.Values.Any(v => v.pos == MouseMove.mousePos))
+                if (setTile)
                 {
-                    tileData.tilemap.SetTile(MouseMove.mousePos, tileData.tile);
-                    tileSetDictionary.Add(tileSetDictionaryCount++, new ClickData(MouseMove.mousePos, tileData.tilemap));
+                    if (!tileSetDictionary.Values.Any(v => v.pos == MouseMove.mousePos))
+                    {
+                        tileData.tilemap.SetTile(MouseMove.mousePos, tileData.tile);
+                        tileSetDictionary.Add(tileSetDictionaryCount++, new ClickData(MouseMove.mousePos, tileData.tilemap, tileData.tile));
 
+                    }
                 }
+                else
+                {
+                    tileData.tilemap.SetTile(MouseMove.mousePos, null);
+                    tileSetDictionary.Add(tileSetDictionaryCount++, new ClickData(MouseMove.mousePos, tileData.tilemap, null));
+                }
+                
 
             }
 

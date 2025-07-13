@@ -5,16 +5,17 @@ using UnityEngine.Tilemaps;
 
 namespace Lrw_Mouse
 {
-    [Serializable]
     public class ClickData
     {
-        [field: SerializeField] public Vector3Int pos { get; private set; }
-        [field: SerializeField] public Tilemap tileMap { get; private set; }
+        public Vector3Int pos { get; private set; }
+        public Tilemap tileMap { get; private set; }
+        public TileBase tile { get; private set; }
 
-        public ClickData(Vector3Int GetTilemap, Tilemap getTile)
+        public ClickData(Vector3Int getTilemap, Tilemap getTile, TileBase gettile)
         {
-            pos = GetTilemap;
+            pos = getTilemap;
             tileMap = getTile;
+            tile = gettile;
         }
 
     }
