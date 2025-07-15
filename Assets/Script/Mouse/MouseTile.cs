@@ -12,7 +12,7 @@ namespace Lrw_Mouse
     {
         [field:SerializeField] public LrwTileData tileData { get; private set; }
         [field: SerializeField] public int MouseMod = 1;
-
+        //0은 설치 불가
         //1은 일반 그리기
         //2는 드래그로 그리기
         //3은 지우개
