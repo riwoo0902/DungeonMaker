@@ -18,10 +18,9 @@ namespace Lrw_Manager
 
             Time.timeScale = gameStartMod ? 1 : 0;
 
-
-
         }
 
+        [ContextMenu("OnChangeMod")]
         public void OnChangeMod()
         {
             gameStartMod = !gameStartMod;

@@ -10,8 +10,13 @@ namespace Lrw_Manager
         [field: SerializeField] public List<TileTypeData> tileTypeDatas { get; private set; }
         private int tileTypeCount;
 
+
+        public static TilesManager instance { get; private set; }
         private void Awake()
         {
+            if (instance != null) Destroy(gameObject);
+            else instance = this;
+
             tileTypeCount = tileTypeDatas.Count;
         }
 

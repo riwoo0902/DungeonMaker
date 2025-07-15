@@ -11,7 +11,13 @@ namespace Lrw_Mouse
     public class MouseTile : MonoBehaviour
     {
         [field:SerializeField] public LrwTileData tileData { get; private set; }
-        [field: SerializeField] public bool setTile { get; private set; } = true;
+        [field: SerializeField] public int MouseMod = 1;
+
+        //1은 일반 그리기
+        //2는 드래그로 그리기
+        //3은 지우개
+        //4는 드래그로 지우기
+
         private Dictionary<int, ClickData> tileSetDictionary = new();
         private int tileSetDictionaryCount = 0;
 
@@ -30,7 +36,7 @@ namespace Lrw_Mouse
         {
             if (Mouse.current.leftButton.isPressed)
             {
-                if (setTile)
+                if(MouseMod == 1)
                 {
                     if (!tileSetDictionary.Values.Any(v => v.pos == MouseMove.mousePos))
                     {
@@ -39,12 +45,24 @@ namespace Lrw_Mouse
 
                     }
                 }
+                else if (MouseMod == 2)
+                {
+
+                }
+                else if (MouseMod == 3)
+                {
+
+                }
+                else if (MouseMod == 4)
+                {
+
+                }
                 else
                 {
-                    tileData.tilemap.SetTile(MouseMove.mousePos, null);
-                    tileSetDictionary.Add(tileSetDictionaryCount++, new ClickData(MouseMove.mousePos, tileData.tilemap, null));
+                    Debug.Log("Error");
                 }
-                
+
+
 
             }
 

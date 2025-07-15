@@ -15,7 +15,7 @@ namespace Lrw_Manager
         {
             if (tile is Tile tileData)
             {
-                return tileData.sprite; // 일반 타일(Tile)의 경우
+                return tileData.sprite;
             }
             else if (tile is RuleTile ruleTile)
             {
